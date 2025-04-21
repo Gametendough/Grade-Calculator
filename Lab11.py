@@ -88,26 +88,32 @@ def option_3(assignment_name, assignments, submissions_folder):
     plt.show()
 
 if __name__ == "__main__":
-    students = load_students('/students.txt')
-    assignments = load_assignments('/assignments.txt')
 
-    print("1. Student grade\n2. Assignment statistics\n3. Assignment graph")
-    user_input = input("\nEnter your selection: ")
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    print("Script Directory:", script_dir)
 
-    if user_input == "1":
-        student_name = input("What is the student's name: ")
-        student_id = next((id for id, name in students.items() if name.lower() == student_name.lower()), None)
-        if student_id:
-            grade = calculate_grade(student_id, '/submissions', assignments)  
-            print(f"{grade}%")
-        else:
-            print("Student not found.")
-    elif user_input == "2":
-        assignment_name = input("What is the assignment name: ")
-        option_2(assignment_name, assignments, '/submissions') 
-    elif user_input == "3":
-        assignment_name = input("Enter the assignment name: ")
-        option_3(assignment_name, assignments, '/submissions')  
-    else:
-        print("Invalid selection. Please try again.")
+    
+
+    # students = load_students('/students.txt')
+    # assignments = load_assignments('/assignments.txt')
+
+    # print("1. Student grade\n2. Assignment statistics\n3. Assignment graph")
+    # user_input = input("\nEnter your selection: ")
+
+    # if user_input == "1":
+    #     student_name = input("What is the student's name: ")
+    #     student_id = next((id for id, name in students.items() if name.lower() == student_name.lower()), None)
+    #     if student_id:
+    #         grade = calculate_grade(student_id, '/submissions', assignments)  
+    #         print(f"{grade}%")
+    #     else:
+    #         print("Student not found.")
+    # elif user_input == "2":
+    #     assignment_name = input("What is the assignment name: ")
+    #     option_2(assignment_name, assignments, '/submissions') 
+    # elif user_input == "3":
+    #     assignment_name = input("Enter the assignment name: ")
+    #     option_3(assignment_name, assignments, '/submissions')  
+    # else:
+    #     print("Invalid selection. Please try again.")
 
