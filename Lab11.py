@@ -92,11 +92,11 @@ if __name__ == "__main__":
     script_dir = os.path.dirname(os.path.abspath(__file__))
     print("Script Directory:", script_dir)
 
-    students = load_students(os.path.join(script_dir, 'students.txt'))
-    assignments = load_assignments(os.path.join(script_dir, 'assignments.txt'))
+    #students = load_students(os.path.join(script_dir, 'students.txt'))
+    #assignments = load_assignments(os.path.join(script_dir, 'assignments.txt'))
 
-    #students = load_students('/students.txt')
-    #assignments = load_assignments('/assignments.txt')
+    students = load_students('/autograder/data/students.txt')
+    assignments = load_assignments('/autograder/data/assignments.txt')
 
     print("1. Student grade\n2. Assignment statistics\n3. Assignment graph")
     user_input = input("\nEnter your selection: ")
