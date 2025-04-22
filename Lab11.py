@@ -87,56 +87,28 @@ def option_3(assignment_name, assignments, submissions_folder):
     plt.hist(scores, bins=[50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100])
     plt.show()
 
-
-
-
-def find_file(root_dir, filename):
-    for dirpath, _, filenames in os.walk(root_dir):
-        if filename in filenames:
-            return os.path.join(dirpath, filename)
-    return None
-
 if __name__ == "__main__":
 
-    # Define root directory and file name
-    root_directory = "/autograder/"
-    file_to_find = "students.txt"
+    students = load_students('/autograder/submission/students.txt')
+    assignments = load_assignments('/autograder/submission/assignments.txt')
 
-    # Search for the file
-    file_path = find_file(root_directory, file_to_find)
+    print("1. Student grade\n2. Assignment statistics\n3. Assignment graph")
+    user_input = input("\nEnter your selection: ")
 
-    # Print results
-    if file_path:
-        print(f"File found: {file_path}")
+    if user_input == "1":
+        student_name = input("What is the student's name: ")
+        student_id = next((id for id, name in students.items() if name.lower() == student_name.lower()), None)
+        if student_id:
+            grade = calculate_grade(student_id, 'submissions', assignments)  
+            print(f"{grade}%")
+        else:
+            print("Student not found.")
+    elif user_input == "2":
+        assignment_name = input("What is the assignment name: ")
+        option_2(assignment_name, assignments, 'submissions') 
+    elif user_input == "3":
+        assignment_name = input("Enter the assignment name: ")
+        option_3(assignment_name, assignments, 'submissions')  
     else:
-        print(f"{file_to_find} not found under {root_directory}")
-
-    # script_dir = os.path.dirname(os.path.abspath(__file__))
-    # print("Script Directory:", script_dir)
-
-    # #students = load_students(os.path.join(script_dir, 'students.txt'))
-    # #assignments = load_assignments(os.path.join(script_dir, 'assignments.txt'))
-
-    # students = load_students('/autograder/data/students.txt')
-    # assignments = load_assignments('/autograder/data/assignments.txt')
-
-    # print("1. Student grade\n2. Assignment statistics\n3. Assignment graph")
-    # user_input = input("\nEnter your selection: ")
-
-    # if user_input == "1":
-    #     student_name = input("What is the student's name: ")
-    #     student_id = next((id for id, name in students.items() if name.lower() == student_name.lower()), None)
-    #     if student_id:
-    #         grade = calculate_grade(student_id, 'submissions', assignments)  
-    #         print(f"{grade}%")
-    #     else:
-    #         print("Student not found.")
-    # elif user_input == "2":
-    #     assignment_name = input("What is the assignment name: ")
-    #     option_2(assignment_name, assignments, 'submissions') 
-    # elif user_input == "3":
-    #     assignment_name = input("Enter the assignment name: ")
-    #     option_3(assignment_name, assignments, 'submissions')  
-    # else:
-    #     print("Invalid selection. Please try again.")
+        print("Invalid selection. Please try again.")
 
