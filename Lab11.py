@@ -99,16 +99,16 @@ if __name__ == "__main__":
         student_name = input("What is the student's name: ")
         student_id = next((id for id, name in students.items() if name.lower() == student_name.lower()), None)
         if student_id:
-            grade = calculate_grade(student_id, 'submissions', assignments)  
+            grade = calculate_grade(student_id, '/autograder/submission/submissions', assignments)  
             print(f"{grade}%")
         else:
             print("Student not found.")
     elif user_input == "2":
         assignment_name = input("What is the assignment name: ")
-        option_2(assignment_name, assignments, 'submissions') 
+        option_2(assignment_name, assignments, '/autograder/submission/submissions') 
     elif user_input == "3":
         assignment_name = input("Enter the assignment name: ")
-        option_3(assignment_name, assignments, 'submissions')  
+        option_3(assignment_name, assignments, '/autograder/submission/submissions')  
     else:
         print("Invalid selection. Please try again.")
 
